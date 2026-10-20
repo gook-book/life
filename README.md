@@ -28,12 +28,12 @@ npm run test:integration
 
 单个 Node Web Service，数据库继续使用现有Supabase。
 
-- 仓库：`https://github.com/gook-book/life-awakening`，分支 `main`，根目录留空。必须先推送修复代码。
+- 仓库：`https://github.com/gook-book/life`，分支 `main`，根目录留空。源码通过GitHub网页恢复提交。
 - 构建：`npm ci --include=dev && npm run build`。
 - 启动：`npm start`，监听 `0.0.0.0`；Next读取Render提供的`PORT`。
 - 环境变量：`NODE_VERSION=22`，`SUPABASE_URL`，`SUPABASE_SERVICE_ROLE_KEY`，`SESSION_SECRET`，`CODE_PEPPER`，`ADMIN_TOKEN`。秘密值只在平台环境变量设置中填写。
 - 默认域名自动采用Render的`RENDER_EXTERNAL_URL`；自定义域名时设置`APP_ORIGIN`。
-- 拟先用free计算方案试运行，不自动开通付费服务。当前尚未创建服务；需确认工作区且解决仓库写权限。
+- 拟先用free计算方案试运行，不自动开通付费服务。使用既有服务 life-awakening-test，不新建服务或数据库。
 - 服务配置通过Render管理接口管理，不另设Blueprint覆盖它。
 
 ## 通用环境配置（含Vercel备选）
@@ -42,7 +42,7 @@ npm run test:integration
 2. 以 `.env.example` 为字段清单。在托管平台的环境变量页面填写，不把真实值写入Git、聊天、截图或公开文档。
 3. 配置 `SUPABASE_URL` 为现有项目地址；`SUPABASE_SERVICE_ROLE_KEY` 为该项目服务端密钥。
 4. `SESSION_SECRET`、`CODE_PEPPER`、`ADMIN_TOKEN` 分别使用独立密码学随机值（推荐32随机字节的hex，即64字符）。不使用示例值。保管管理员令牌。
-5. `APP_ORIGIN` 填最终 `https://域名`，无末尾斜杠。生产API缺此配置会拒绝请求。环境变量不使用 `NEXT_PUBLIC_` 前缀。
+5. `APP_ORIGIN` 填最终 `https://域名`，无末尾斜杠。Render默认域名可由RENDER_EXTERNAL_URL自动提供。环境变量不使用 `NEXT_PUBLIC_` 前缀。
 6. Vercel 导入仓库根目录，Framework选Next.js；安装 `npm ci`；构建 `npm run build`；Node.js 22。配置后部署。首页 `/`，后台 `/admin`。
 7. HTTPS正式环境重新执行完整浏览器验收后再售卖。
 
